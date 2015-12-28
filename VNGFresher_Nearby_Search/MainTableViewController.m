@@ -50,7 +50,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-//    NSString *identifier = @"Cell";
 //    MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 //    
 //    cell = [[MainTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
