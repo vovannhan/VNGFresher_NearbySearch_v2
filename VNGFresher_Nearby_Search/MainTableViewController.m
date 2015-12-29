@@ -372,7 +372,6 @@
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-//    NSLog(@"Location : %@", newLocation);
     CLLocation *current_currentlocation = newLocation;
     if (current_currentlocation != nil) {
         self.lattude = [NSNumber numberWithFloat:current_currentlocation.coordinate.latitude];
