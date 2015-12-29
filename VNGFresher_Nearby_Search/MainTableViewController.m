@@ -100,7 +100,8 @@
     
     location_manager.delegate = self;
     location_manager.desiredAccuracy  = kCLLocationAccuracyBest;
-    [location_manager requestWhenInUseAuthorization];
+    //[location_manager requestWhenInUseAuthorization];
+    [location_manager requestAlwaysAuthorization];
     
     [location_manager startUpdatingLocation];
 //    NSLog(@"%@",self.longtude);
