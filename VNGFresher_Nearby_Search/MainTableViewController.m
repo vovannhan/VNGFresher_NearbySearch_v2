@@ -409,7 +409,6 @@
             NSString *nextpage_token_link = [jsonArray2 objectForKey:@"next_page_token"];
             //NSString *status = [jsonArray2 objectForKey:@"status"];
             //NSLog(@"%@",nextpage_token_link);
-            //NSLog(@"%@",nextpage_token_link);
             if (nextpage_token_link != nil) {
                 
                 [arr_nextpage addObject:nextpage_token_link];
