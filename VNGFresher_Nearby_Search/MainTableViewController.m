@@ -342,7 +342,7 @@
 //        CLLocationDistance distance = [current_location distanceFromLocation:temp_location];
 //        NSString *cur_distance = [NSString stringWithFormat:@"%.2f",distance/1000.0f];
 //        [arr_distance addObject:cur_distance];
-//    }
+//    } xxxx
 
     [self.tableView reloadData];
     
@@ -411,7 +411,7 @@
             //NSLog(@"%@",nextpage_token_link);
             //NSLog(@"%@",nextpage_token_link);
             if (nextpage_token_link != nil) {
-                NSLog(@"LOADDDDDDDD");
+                //NSLog(@"LOADDDDDDDD");
                 [arr_nextpage addObject:nextpage_token_link];
             } else {
                 [arr_nextpage addObject:@"end"];
