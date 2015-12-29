@@ -60,7 +60,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //arr_Photo = [[NSMutableArray alloc] init];
+    
     iconarr_car = @[@"car_dealer",@"car_rental",@"car_repair",@"car_wash"];
     iconarr_money = @[@"acounting",@"atm",@"casino",@"finance"];
     iconarr_air = @[@"airport"];
