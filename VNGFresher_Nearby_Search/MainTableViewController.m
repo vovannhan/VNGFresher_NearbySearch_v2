@@ -12,7 +12,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 #define API_KEY @"AIzaSyCy3zsPTh8UfIkq5gHYtPXGc0f-w7Nzfmc"
-#define getDataURL @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=5000&key=AIzaSyCy3zsPTh8UfIkq5gHYtPXGc0f-w7Nzfmc"
+#define getDataURL @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&key=AIzaSyCy3zsPTh8UfIkq5gHYtPXGc0f-w7Nzfmc"
 
 @interface MainTableViewController ()<CLLocationManagerDelegate> {
     
@@ -253,7 +253,7 @@
 #pragma mark - Data handle Methods
 
 -(void)retrive_Data {
-    NSString *str_tempurl = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%@,%@&radius=5000&key=AIzaSyCy3zsPTh8UfIkq5gHYtPXGc0f-w7Nzfmc",[self.lattude stringValue],[self.longtude stringValue]];
+    NSString *str_tempurl = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%@,%@&radius=1000&key=AIzaSyCy3zsPTh8UfIkq5gHYtPXGc0f-w7Nzfmc",[self.lattude stringValue],[self.longtude stringValue]];
     NSURL *url = [NSURL URLWithString:str_tempurl];
     
     
@@ -276,8 +276,11 @@
     
     NSString *temp_nextpage_token = [arr_Json objectForKey:@"next_page_token"];
     
-    [arr_nextpage addObject:temp_nextpage_token];
-    
+    if (temp_nextpage_token != nil) {
+        [arr_nextpage addObject:temp_nextpage_token];
+    } else {
+        [arr_nextpage addObject:@"end"];
+    }
     
     
     for (int i = 0 ; i < arr_Result.count; i++) {
