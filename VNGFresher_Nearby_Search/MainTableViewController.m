@@ -411,7 +411,7 @@
             //NSLog(@"%@",nextpage_token_link);
             //NSLog(@"%@",nextpage_token_link);
             if (nextpage_token_link != nil) {
-                //NSLog(@"LOADDDDDDDD");
+                
                 [arr_nextpage addObject:nextpage_token_link];
             } else {
                 [arr_nextpage addObject:@"end"];
