@@ -343,14 +343,6 @@
 //        NSString *cur_distance = [NSString stringWithFormat:@"%.2f",distance/1000.0f];
 //        [arr_distance addObject:cur_distance];
 //    }
-    
-    
-    
-//    NSURL *url2 = [NSURL URLWithString:arr_Detail_link[1]];
-//    
-//    NSData *data2 = [NSData dataWithContentsOfURL:url2];
-//    
-//    test_detail= [NSJSONSerialization JSONObjectWithData:data2 options:kNilOptions error:nil];
 
     [self.tableView reloadData];
     
