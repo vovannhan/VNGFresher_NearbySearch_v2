@@ -27,4 +27,14 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *lbl_phonenumber;
 
+
+@property (strong, nonatomic) IBOutlet UILabel *lbl_address;
+
+@property (strong, nonatomic) IBOutlet UILabel *lbl_rating;
+
+@property (strong, nonatomic) IBOutlet UILabel *lbl_types;
+
+
+
+
 @end

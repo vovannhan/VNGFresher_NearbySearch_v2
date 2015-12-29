@@ -22,7 +22,7 @@
 
 -(void)load_cell_data {
     self.lbl_place_name.text = self.place_name;
-    self.lbl_place_id.text = self.place_id;
+    //self.lbl_place_id.text = self.place_id;
 }
 
 @end
