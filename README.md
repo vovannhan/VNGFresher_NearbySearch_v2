@@ -26,6 +26,7 @@
 - Chưa cho phép người dùng tuỳ chỉnh tìm kiếm.
 - Chỉ search được 60 kết quả (do hạn chế của Google API).
 - đôi khi gặp lỗi không xác định được vị trí hiện tại, cần reset lại dịch vụ định vị của máy.
+- Ứng dụng chưa sử dụng Autolayout, chỉ hoạt động tốt trên màn hình kính thước 4 inch (iphone 5, iphone 5s).
 
 6.Lời cảm ơn.
 - Em xin chân thành cảm ơn chị Nguyễn Ngọc Phương Tuyền đã nhiệt tình cung cấp cho em rất nhiều thông tin về chương trình và các anh/chị đã bỏ thời gian chấm bài của em.
