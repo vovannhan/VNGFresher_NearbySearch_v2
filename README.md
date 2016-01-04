@@ -4,6 +4,7 @@
 - Tìm kiếm các vị trí xung quanh.
 - Màn hình 1: Hiển thị tên vị trí, icon, loại, và khoảng cách tới vị trí hiện tại.
 - Màn hình 2: Hiển thị thông tin chi tiết bao gồm: Hình ảnh, website, phone number, address, rating, types.
+- Màn hình 3: Lọc kết quả tìm kiếm theo bán kính và loại vị trí cần tìm kiếm.
 
 2.Các công cụ dùng trong ứng dụng.
 - Google Places API Web service.(link: https://developers.google.com/places/web-service/search) , dùng để tải danh sách các vị trí xung quanh, hình ảnh và thông tin chi tiết của các vị trí.
@@ -23,8 +24,7 @@
 - Đôi lúc gặp lỗi không xác định được vị trí hiện tại.
 
 5.Hạn chế của ứng dụng.
-- Chưa cho phép người dùng tuỳ chỉnh tìm kiếm.
-- Chỉ search được 60 kết quả (do hạn chế của Google API).
+- Chỉ search được một số lượng  kết quả nhất định(do hạn chế của Google API).
 - đôi khi gặp lỗi không xác định được vị trí hiện tại, cần reset lại dịch vụ định vị của máy.
 - Ứng dụng chưa sử dụng Autolayout, chỉ hoạt động tốt trên màn hình kính thước 4 inch (iphone 5, iphone 5s).
 
