@@ -10,6 +10,7 @@
 #import "DetailViewController.h"
 #import "MainTableViewCell.h"
 #import <CoreLocation/CoreLocation.h>
+#import "infoViewController.h"
 
 #define API_KEY @"AIzaSyCy3zsPTh8UfIkq5gHYtPXGc0f-w7Nzfmc"
 #define getDataURL @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&key=AIzaSyCy3zsPTh8UfIkq5gHYtPXGc0f-w7Nzfmc"
@@ -60,6 +61,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.cur_radius = @"1000";
+    self.cur_types = @"All";
+    
+    self.dic_chose_types = @{
+                             @"Food" : @"food",
+                             @"ATM"  : @"atm",
+                             @"Hotel": @"lodging",
+                             @"Bank" : @"bank",
+                             @"Drink": @"cafe",
+                             @"Bus"  : @"bus_station",
+                             @"Police": @"police",
+                             @"Health" : @"health"
+    };
     
     iconarr_car = @[@"car_dealer",@"car_rental",@"car_repair",@"car_wash"];
     iconarr_money = @[@"acounting",@"atm",@"casino",@"finance"];
@@ -81,9 +95,11 @@
     iconarr_machine = @[@"plumber",@"storage",@"roofing_contractor",@"place_of_worship",@"locksmith",@"electrician",@"electronics_store"];
     iconarr_book = @[@"book",@"library"];
     iconarr_job = @[@"insurance_agency",@"laundry",@"lawyer",@"post_office",@"embass"];
-    iconarr_air = @[@"bank"];
+    iconarr_air = @[@"airport"];
     iconarr_hall = @[@"city_hall",@"establishment",@"local_government_office",@"shopping_mall"];
     iconarr_police = @[@"police"];
+    iconarr_bank = @[@"bank"];
+    
     
     
     
@@ -141,6 +157,8 @@
     cell.img_distance.text = arr_distance[indexPath.row];
     cell.lbl_type.text = arr_type[indexPath.row];
     cell.img_type.image = [UIImage imageNamed:@"info.png"];
+    NSString *tempstt = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
+    cell.lbl_stt.text = tempstt;
     [cell load_cell_data];
     
     NSString *type = arr_type[indexPath.row];
@@ -189,6 +207,8 @@
         cell.img_icon.image = [UIImage imageNamed:@"building.png"];
     }else if ([iconarr_police containsObject:type]) {
         cell.img_icon.image = [UIImage imageNamed:@"police.png"];
+    }else if ([iconarr_bank containsObject:type]) {
+        cell.img_icon.image = [UIImage imageNamed:@"bank.png"];
     }else {
         cell.img_icon.image = [UIImage imageNamed:@"defaul.png"];
     }
@@ -216,6 +236,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -253,8 +275,21 @@
 #pragma mark - Data handle Methods
 
 -(void)retrive_Data {
-    NSString *str_tempurl = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%@,%@&radius=1000&key=AIzaSyCy3zsPTh8UfIkq5gHYtPXGc0f-w7Nzfmc",[self.lattude stringValue],[self.longtude stringValue]];
-    NSURL *url = [NSURL URLWithString:str_tempurl];
+    
+    
+    if ([self.cur_types isEqualToString:@"All"]) {
+        self.link_api = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%@,%@&radius=%@&key=AIzaSyCy3zsPTh8UfIkq5gHYtPXGc0f-w7Nzfmc",[self.lattude stringValue],[self.longtude stringValue],self.cur_radius];
+    } else {
+        self.link_api = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%@,%@&radius=%@&types=%@&key=AIzaSyCy3zsPTh8UfIkq5gHYtPXGc0f-w7Nzfmc",[self.lattude stringValue],[self.longtude stringValue],self.cur_radius,[self.dic_chose_types objectForKey:self.cur_types]];
+    }
+    
+    NSLog(@"currrrrr: %@",self.cur_radius);
+    NSLog(@"typessssssss: %@",self.cur_types);
+    
+    
+    
+    
+    NSURL *url = [NSURL URLWithString:self.link_api];
     
     
     NSData *data = [NSData dataWithContentsOfURL:url];
@@ -310,6 +345,7 @@
         
         
         NSString *detail_link = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?placeid=%@&key=%@",place_id,API_KEY];
+        
         [arr_Detail_link addObject:detail_link];
         
         NSDictionary *dic_temp_location = [[[arr_Result objectAtIndex:i] objectForKey:@"geometry"]objectForKey:@"location"];
@@ -323,6 +359,8 @@
         [arr_distance addObject:cur_distance];
         
     }
+    
+/*
     
 //    for (int i = 0; i< arr_Result.count; i++) {
 //        NSString *place_id = [[arr_Result objectAtIndex:i] objectForKey:@"place_id"];
@@ -346,9 +384,11 @@
 //        CLLocationDistance distance = [current_location distanceFromLocation:temp_location];
 //        NSString *cur_distance = [NSString stringWithFormat:@"%.2f",distance/1000.0f];
 //        [arr_distance addObject:cur_distance];
-//    } xxxx
+//    } xxxx */
 
     [self.tableView reloadData];
+ 
+ 
     
 }
 
@@ -363,12 +403,14 @@
     
     UIAlertController *alertview = [UIAlertController alertControllerWithTitle:tittle message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:okText style:UIAlertActionStyleCancel handler:nil];
+    
     [alertview addAction:okAction];
     [self presentViewController:alertview animated:YES completion:nil];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     CLLocation *current_currentlocation = newLocation;
+    
     if (current_currentlocation != nil) {
         self.lattude = [NSNumber numberWithFloat:current_currentlocation.coordinate.latitude];
         self.longtude = [NSNumber numberWithFloat:current_currentlocation.coordinate.longitude];
@@ -466,9 +508,19 @@
             }
             
             num_of_page++;
+            
             [self.tableView reloadData];
         }
 }
+
+- (IBAction)btn_Setting:(id)sender {
+    infoViewController *newview = [self.storyboard instantiateViewControllerWithIdentifier:@"info_view"];
+    newview.current_radius = self.cur_radius;
+    newview.current_type = self.cur_types;
+    //newview.view.backgroundColor = [UIColor redColor];
+    [self.navigationController pushViewController:newview animated:YES];
+}
+
 
 
 

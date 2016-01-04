@@ -24,6 +24,10 @@
 @property (nonatomic, strong) NSMutableArray *arr_distance;
 @property (nonatomic, strong) NSMutableArray *arr_type;
 @property (nonatomic, strong) NSMutableArray *arr_nextpage;
+@property (nonatomic, strong) NSString *cur_radius;
+@property (nonatomic, strong) NSString *cur_types;
+@property (nonatomic, strong) NSDictionary *dic_chose_types;
+@property (nonatomic, strong) NSString *link_api;
 
 -(void)retrive_Data;
 @end

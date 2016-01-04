@@ -24,6 +24,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *lbl_type;
 
 @property (strong, nonatomic) IBOutlet UIImageView *img_type;
+
+@property (strong, nonatomic) IBOutlet UILabel *lbl_stt;
+
+
 -(void)load_cell_data;
 
 
